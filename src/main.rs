@@ -24,6 +24,10 @@ fn main() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let respone = "+PONG\r\n";
+    let respone = encode_simple_string("PONG");
     stream.write(respone.as_bytes()).unwrap();
+}
+
+fn encode_simple_string(s: &str) -> String {
+    format!("+{}\r\n", s)
 }
